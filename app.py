@@ -182,12 +182,15 @@ def create_sample_data():
     
     return pd.DataFrame(data)
 
+# Create global app instance for Gunicorn
+app_instance = HudhudApp()
+app = app_instance.app
+
 def main():
     """Main entry point"""
     try:
         # Create and run application
-        app = HudhudApp()
-        app.run(debug=True, port=8050)
+        app_instance.run(debug=True, port=8050)
         
     except KeyboardInterrupt:
         print("\nApplication stopped by user")
