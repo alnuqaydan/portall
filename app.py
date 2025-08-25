@@ -84,6 +84,12 @@ class HudhudApp:
     def setup_layout(self):
         """Setup the application layout"""
         self.app.layout = create_layout()
+        
+        # Add health check endpoint for Render
+        @self.app.server.route('/health')
+        def health_check():
+            return {'status': 'healthy', 'service': 'Hudhud KPI System'}, 200
+        
         self.logger.info("Application layout configured")
     
     def register_callbacks(self):
