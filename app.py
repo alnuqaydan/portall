@@ -90,6 +90,11 @@ class HudhudApp:
         def health_check():
             return {'status': 'healthy', 'service': 'Hudhud KPI System'}, 200
         
+        # Add Render-compatible health check endpoint
+        @self.app.server.route('/healthz')
+        def health_check_render():
+            return {'status': 'healthy', 'service': 'Hudhud KPI System'}, 200
+        
         self.logger.info("Application layout configured")
     
     def register_callbacks(self):

@@ -1,66 +1,23 @@
 services:
   - type: web
-    name: hudhud-kpi-system
+    name: portall
     env: python
+    region: frankfurt
     plan: starter
-    pythonVersion: "3.11.0"
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app.server --bind 0.0.0.0:$PORT
+    startCommand: gunicorn app:app.server --config gunicorn.conf.py
+    healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.0
+      - key: PYTHONUNBUFFERED
+        value: 1
       - key: PORT
         value: 8050
-      - key: DEBUG
-        value: false
+      - key: ENVIRONMENT
+        value: production
       - key: LOG_LEVEL
-        value: INFO
-      - key: CACHE_ENABLED
-        value: true
-      - key: CACHE_TYPE
-        value: file
-      - key: EXPORT_FORMATS
-        value: csv,parquet,xlsx
-      - key: REVIEWERS
-        value: malngedan,aalbwardi,fahad,naif
-      - key: STARRED_USERS
-        value: malngedan,aalbwardi
-      - key: DEFAULT_CITY
-        value: Riyadh
-      - key: DEFAULT_TERRITORY
-        value: Central
-      - key: SUPPORTED_CITIES
-        value: Riyadh,Jeddah,Dammam,Mecca,Medina
-      - key: MIN_CONFIDENCE
-        value: 0.7
-      - key: MAX_REVIEW_TIME
-        value: 24
-      - key: DUPLICATE_THRESHOLD
-        value: 0.8
-      - key: DAILY_REPORT_TIME
-        value: 06:00
-      - key: WEEKLY_REPORT_DAY
-        value: Tuesday
-      - key: WEEKLY_REPORT_TIME
-        value: 09:00
-      - key: HEALTH_CHECK_ENABLED
-        value: true
-      - key: METRICS_ENABLED
-        value: true
-      - key: ALERTING_ENABLED
-        value: false
-      - key: DEV_MODE
-        value: false
-      - key: MOCK_DATA_ENABLED
-        value: false
-      - key: PROFILING_ENABLED
-        value: false
-      - key: DEBUG_TOOLBAR_ENABLED
-        value: false
-    healthCheckPath: /health
+        value: info
     autoDeploy: true
-    numInstances: 1
-    disk:
-      name: hudhud-data
-      mountPath: /app/data
-      sizeGB: 1
+    branch: main
+    repo: https://github.com/alnuqaydan/portall

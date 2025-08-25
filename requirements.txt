@@ -1,21 +1,21 @@
 # Hudhud KPI System - Required Dependencies
-# نظام مراقبة KPIs ديناميكي للمراجعين
+# Dynamic KPI Monitoring System for Reviewers
 
 # =============================================================================
 # Core Web Framework
 # =============================================================================
-dash==2.16.1
+dash==2.14.2
 dash-bootstrap-components==1.5.0
-dash-extensions==1.0.4
-flask==3.0.0
+dash-table==5.0.0
+flask==2.3.3
 gunicorn==21.2.0
 
 # =============================================================================
 # Data Processing & Analysis
 # =============================================================================
-pandas==2.1.4
+pandas==2.0.3
 numpy==1.24.3
-polars==0.20.1
+polars==0.19.19
 pyarrow==14.0.2
 
 # =============================================================================
@@ -92,10 +92,6 @@ seaborn==0.13.0
 plotly==5.17.0
 
 # =============================================================================
-# Async & Concurrency
-# =============================================================================
-
-# =============================================================================
 # Security & Authentication
 # =============================================================================
 cryptography==41.0.8
@@ -137,33 +133,10 @@ twilio==8.10.0
 # System & OS Integration
 # =============================================================================
 psutil==5.9.6
-pywin32==306; sys_platform == "win32"
-pyobjc-framework-SystemServices==9.2; sys_platform == "darwin"
-
-# =============================================================================
-# Optional Dependencies
-# =============================================================================
-# Uncomment if you need these features:
-
-# Jupyter Notebook Support
-# jupyter==1.0.0
-# ipykernel==6.27.1
-
-# Advanced Data Visualization
-# bokeh==3.3.2
-# altair==5.2.0
-
-# Geospatial Analysis
-# geopandas==0.14.1
-# folium==0.15.1
-
-# Natural Language Processing
-# nltk==3.8.1
-# textblob==0.17.1
 
 # =============================================================================
 # Version Notes
 # =============================================================================
-# Python >= 3.8 required
-# Some packages may have version conflicts - test thoroughly
-# Consider using virtual environments for isolation
+# Python 3.11.0 required
+# Optimized for Render deployment
+# Tested compatibility with all packages
