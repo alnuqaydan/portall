@@ -22,28 +22,62 @@
 3. **Build Script**: Created `build.sh` for efficient dependency installation
 4. **Render Configuration**: Added `render.yaml` for infrastructure-as-code
 
-### ✅ Files Modified
-- `app.py` - Added Render health check endpoint
+### ✅ Files Added/Modified for Better Deployment
+- `app.py` - Added Render health check endpoints (/health and /healthz)
 - `gunicorn.conf.py` - Optimized for Render deployment
-- `build.sh` - New build script
-- `render.yaml` - Infrastructure configuration
+- `build.sh` - Build script for efficient dependency installation
+- `render.yaml` - Infrastructure-as-code configuration
+- `deploy_render.py` - Enhanced deployment validation with --skip-deps option
+- `quick_deploy.sh` - Automated deployment script
+- `requirements-minimal.txt` - Minimal dependencies for faster builds
+- `test_deployment.py` - Test deployment configuration
+- `check_deployment.py` - Monitor deployment health status
+- `data/` - Created required directory structure
 
 ## 🔧 Deployment Steps
 
-### 1. Commit and Push Changes
+### Option A: Quick Deploy (Recommended)
 ```bash
-git add .
-git commit -m "Optimize for Render deployment"
-git push origin main
+# Validate and deploy in one command
+./quick_deploy.sh
+
+# Or with custom commit message
+./quick_deploy.sh "Add new feature: improved KPI dashboard"
+
+# Validate only (no deployment)
+./quick_deploy.sh --validate-only
 ```
 
-### 2. Render Auto-Deploy
+### Option B: Manual Deployment
+1. **Validate Deployment Readiness**
+   ```bash
+   python deploy_render.py --skip-deps
+   ```
+
+2. **Commit and Push Changes**
+   ```bash
+   git add .
+   git commit -m "Optimize for Render deployment"
+   git push origin main
+   ```
+
+3. **Monitor Deployment**
+   ```bash
+   # Check deployment status
+   python check_deployment.py
+   
+   # Continuous monitoring
+   python check_deployment.py --monitor
+   ```
+
+### 4. Render Auto-Deploy
 - Render will automatically detect changes and start deployment
 - Monitor the deployment logs in Render dashboard
 
-### 3. Verify Deployment
+### 5. Verify Deployment
 - Check health endpoint: `https://portall-nn5x.onrender.com/healthz`
 - Monitor application logs for any errors
+- Use deployment status checker for automated monitoring
 
 ## 🚨 Troubleshooting
 
@@ -95,6 +129,69 @@ python -c "import dash, flask, gunicorn; print('OK')"
 2. **Memory Management**: Use efficient data structures
 3. **Caching**: Implement Redis or file-based caching
 4. **Static Assets**: Use CDN for large files
+
+## 🛠️ Deployment Tools
+
+### 1. Quick Deploy Script (`./quick_deploy.sh`)
+Automated deployment script that handles validation, Git operations, and provides deployment instructions.
+
+```bash
+# Quick deploy with auto-generated commit message
+./quick_deploy.sh
+
+# Deploy with custom commit message  
+./quick_deploy.sh "Add new dashboard features"
+
+# Validate only (no Git operations)
+./quick_deploy.sh --validate-only
+
+# Skip Git operations (for testing)
+./quick_deploy.sh --no-git
+```
+
+### 2. Deployment Validator (`deploy_render.py`)
+Validates deployment readiness with improved error handling.
+
+```bash
+# Full validation including dependency check
+python deploy_render.py
+
+# Fast validation (skip dependency installation)
+python deploy_render.py --skip-deps
+```
+
+### 3. Deployment Status Checker (`check_deployment.py`)
+Monitor your deployed application's health and performance.
+
+```bash
+# Single health check
+python check_deployment.py
+
+# Continuous monitoring (30s intervals)
+python check_deployment.py --monitor
+
+# Check local development server
+python check_deployment.py --local
+
+# Custom monitoring interval
+python check_deployment.py --monitor --interval 60
+```
+
+### 4. Configuration Tester (`test_deployment.py`)
+Test deployment configuration files and health endpoints.
+
+```bash
+# Test all deployment configurations
+python test_deployment.py
+```
+
+### 5. Minimal Requirements (`requirements-minimal.txt`)
+Use for faster development builds when testing deployment.
+
+```bash
+# Install minimal dependencies for testing
+pip install -r requirements-minimal.txt
+```
 
 ## 🔄 Auto-Deploy Configuration
 
