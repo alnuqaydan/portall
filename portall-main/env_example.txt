@@ -1,0 +1,116 @@
+# Hudhud KPI System - Environment Configuration
+# Copy this file to .env and modify the values as needed
+
+# Core Application Settings
+APP_NAME=Hudhud KPI System
+APP_VERSION=1.0.0
+DEBUG=true
+LOG_LEVEL=INFO
+
+# Database Configuration
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=field_survey_production
+DB_USER=survey_user
+DB_PASSWORD=secure_password
+DB_SSL_MODE=prefer
+
+# Cache Configuration
+CACHE_ENABLED=true
+CACHE_TYPE=file
+CACHE_TTL=3600
+CACHE_MAX_SIZE=1000
+
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=8050
+API_TIMEOUT=30
+CORS_ENABLED=true
+
+# Export Configuration
+EXPORT_FORMATS=csv,parquet,xlsx
+MAX_EXPORT_SIZE=10000
+EXPORT_TIMEOUT=300
+EXPORT_PATH=./data/exports
+
+# Notification Configuration
+NOTIFICATIONS_ENABLED=true
+EMAIL_ENABLED=false
+SLACK_ENABLED=false
+SLACK_WEBHOOK_URL=
+
+# Security Configuration
+SECRET_KEY=your-secret-key-here
+JWT_SECRET_KEY=your-jwt-secret-key-here
+JWT_ALGORITHM=HS256
+JWT_EXPIRATION=3600
+BCRYPT_ROUNDS=12
+
+# Performance Configuration
+WORKER_PROCESSES=4
+MAX_CONNECTIONS=100
+CONNECTION_TIMEOUT=30
+QUERY_TIMEOUT=60
+
+# Logging Configuration
+LOG_FILE=./data/logs/hudhud.log
+LOG_MAX_SIZE=100MB
+LOG_BACKUP_COUNT=5
+LOG_FORMAT=%(asctime)s - %(name)s - %(levelname)s - %(message)s
+
+# Data Processing Configuration
+BATCH_SIZE=1000
+MAX_WORKERS=4
+CHUNK_SIZE=10000
+COMPRESSION=gzip
+
+# KPI Configuration
+KPI_REFRESH_INTERVAL=300
+KPI_CACHE_TTL=1800
+KPI_BATCH_SIZE=500
+KPI_TIMEOUT=120
+
+# Reviewers Configuration
+REVIEWERS=malngedan,aalbwardi,fahad,naif
+STARRED_USERS=malngedan,aalbwardi
+REVIEWER_ROLES=senior,junior,lead
+REVIEW_THRESHOLDS=0.7,0.8,0.9
+
+# Geographic Configuration
+DEFAULT_CITY=Riyadh
+DEFAULT_TERRITORY=Central
+SUPPORTED_CITIES=Riyadh,Jeddah,Dammam,Mecca,Medina
+TERRITORY_MAPPING={"Riyadh": ["North", "South", "East", "West", "Central"]}
+
+# Data Quality Configuration
+MIN_CONFIDENCE=0.7
+MAX_REVIEW_TIME=24
+MIN_MEDIA_COUNT=1
+MAX_NAME_LENGTH=100
+DUPLICATE_THRESHOLD=0.8
+
+# Reporting Configuration
+DAILY_REPORT_TIME=06:00
+WEEKLY_REPORT_DAY=Tuesday
+WEEKLY_REPORT_TIME=09:00
+REPORT_RETENTION_DAYS=90
+REPORT_FORMATS=pdf,html,xlsx
+
+# External Services
+MAPS_API_KEY=your-google-maps-api-key
+GEOCODING_ENABLED=true
+WEATHER_API_KEY=your-weather-api-key
+WEATHER_ENABLED=false
+
+# Monitoring Configuration
+HEALTH_CHECK_ENABLED=true
+HEALTH_CHECK_INTERVAL=60
+METRICS_ENABLED=true
+METRICS_PORT=9090
+ALERTING_ENABLED=false
+
+# Development Configuration
+DEV_MODE=false
+MOCK_DATA_ENABLED=false
+PROFILING_ENABLED=false
+DEBUG_TOOLBAR_ENABLED=false

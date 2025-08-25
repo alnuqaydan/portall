@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: portall
+    env: python
+    region: frankfurt
+    plan: starter
+    buildCommand: pip install -r requirements-minimal.txt
+    startCommand: gunicorn app:app --config gunicorn.conf.py
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PYTHONUNBUFFERED
+        value: 1
+      - key: PORT
+        value: 8050
+      - key: ENVIRONMENT
+        value: production
+      - key: LOG_LEVEL
+        value: info
+    autoDeploy: true
+    branch: main
+    repo: https://github.com/alnuqaydan/portall
