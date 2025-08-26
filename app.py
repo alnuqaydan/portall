@@ -195,5 +195,8 @@ def main():
         print(f"Error running application: {e}")
         logging.error(f"Application error: {e}")
 
+# Create global app instance for production deployment (gunicorn)
+app = HudhudApp()
+
 if __name__ == "__main__":
     main()

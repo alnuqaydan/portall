@@ -4,7 +4,7 @@ services:
     env: python
     region: frankfurt
     plan: starter
-    buildCommand: pip install -r requirements.txt
+    buildCommand: ./build.sh
     startCommand: gunicorn app:app.server --config gunicorn.conf.py
     healthCheckPath: /health
     envVars:
