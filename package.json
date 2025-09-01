@@ -7,7 +7,7 @@
     "build": "echo 'This is a Python application. Use: pip install -r requirements.txt'",
     "start": "python app.py",
     "dev": "python app.py",
-    "install": "python -m ensurepip --upgrade && python -m pip install -r requirements.txt",
+    "build": "./build.sh",
     "test": "python test_basic.py"
   },
   "keywords": [

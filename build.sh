@@ -3,8 +3,12 @@ set -e
 
 echo "🚀 Starting Hudhud KPI System build..."
 
-# Ensure Python 3.11 is used
-echo "🐍 Setting Python version to 3.11.0..."
+# Create and activate virtual environment
+echo "🐍 Creating Python virtual environment..."
+python -m venv venv
+source venv/bin/activate
+
+echo "🐍 Activated virtual environment, Python version:"
 python --version
 
 # Install dependencies
