@@ -51,7 +51,7 @@ class HudhudKPIServer {
 
     serveApiData(res) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        const data = this.generateSampleData();
+        const data = this.loadCustomData();
         res.end(JSON.stringify(data));
     }
 
@@ -374,6 +374,25 @@ tr:hover {
         }
         
         return data;
+    }
+
+    loadCustomData() {
+        try {
+            // Try to read custom data file
+            if (fs.existsSync('data.json')) {
+                const fileContent = fs.readFileSync('data.json', 'utf8');
+                const customData = JSON.parse(fileContent);
+                console.log(`📊 Loaded ${customData.length} records from data.json`);
+                return customData;
+            } else {
+                console.log('📝 data.json not found, using sample data');
+                return this.generateSampleData();
+            }
+        } catch (error) {
+            console.error('❌ Error loading custom data:', error.message);
+            console.log('📝 Falling back to sample data');
+            return this.generateSampleData();
+        }
     }
 
     start() {
